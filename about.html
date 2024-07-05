@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <style>
+        /* Global styles */
+        body {
+            background: url('https://img.freepik.com/free-vector/abstract-black-lines-geometric-background_677411-2748.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #ffffff; /* Set default text color */
+        }
+        a {
+            text-decoration: none; /* Remove underline from links */
+        }
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+            animation: slideInFromLeft 1s ease-out;
+        }
+        .about__container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+        .about__img {
+            grid-column: 2 / span 1; /* Position image in the second column */
+            text-align: right; /* Align image to the right */
+            animation: slideInFromRight 1s ease-out;
+        }
+        .about__img img {
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .about__info {
+            grid-column: 1 / span 1; /* Position text in the first column */
+            text-align: center; /* Align text to the center */
+            animation: slideInFromLeft 1s ease-out;
+        }
+        .about__subtitle {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .about__text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        button {
+            background-color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        button a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Keyframe animations */
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="about section" id="about">
+        <button><a href="index.html">Home</a></button>
+        <div class="about__container bd-grid">
+            <div class="about__info">
+                <h2 class="section-title">About</h2>
+                <h2 class="about__subtitle">I am Sagar</h2>
+                <p class="about__text">Sagar Pawar, a student at PK Technical Campus, is diligently crafting his portfolio website to showcase his burgeoning skills and achievements. With a keen focus on learning and growth, Sagar's portfolio is more than just a collection of projects; it's a testament to his dedication to mastering various technologies and tools. Each section of his website reflects his passion for innovation and problem-solving, aiming to captivate visitors with his creativity and attention to detail. Through his portfolio, Sagar strives to highlight his academic journey and practical experiences, offering a glimpse into his potential and aspirations in the field of technology.</p>
+            </div>
+            <div class="about__img">
+                <img src="assets/img/about.jpg" alt="About Image">
+            </div>
+        </div>
+    </section>
+</body>
+</html>

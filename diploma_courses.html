@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diploma Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Liberation+Serif:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/cd/a3/43/cda34363fa892b733d9d11c18dced091.gif');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* Align content vertically */
+            align-items: center; /* Center align content */
+        }
+
+        .glow-text {
+            font-family: 'Liberation Serif', serif; /* Liberation Serif font */
+            font-size: 2rem;
+            font-weight: bold; /* Bold font weight */
+            text-align: center;
+            color: #333333;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px; /* Spacing between heading and cards */
+            cursor: pointer; /* Add pointer cursor on hover */
+            transition: color 0.3s;
+        }
+
+        .glow-text:hover {
+            color: #ffffff; /* White text color on hover */
+        }
+
+        a{
+            border: #f0f0f0;
+            border-style:dashed;
+        }
+
+        .glow-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            color: #800080; /* Purple glow color */
+            overflow: hidden;
+            mix-blend-mode: overlay;
+            animation: glow 2s ease-in-out infinite alternate;
+            opacity: 0; /* Initially hidden */
+        }
+
+        .glow-text:hover::after {
+            opacity: 1; /* Show on hover */
+        }
+
+        @keyframes glow {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.2); /* Increased scale for brighter glow */
+                opacity: 1;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* Center align cards */
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: calc(25% - 20px);
+            background-color: #333333; /* Dark background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #ffffff; /* White text color */
+            transition: background-color 0.3s, box-shadow 0.3s;
+            position: relative; /* Added position relative for pseudo element */
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(128, 0, 128, 0); /* Initial transparent background */
+            border-radius: 8px;
+            z-index: -1;
+            transition: background-color 0.3s; /* Smooth transition for background color */
+            opacity: 0; /* Initially hidden */
+        }
+
+        .card:hover::after {
+            background-color: rgba(128, 0, 128, 0.3); /* Purple glow color on hover */
+            opacity: 1; /* Show on hover */
+        }
+
+        .card:hover {
+            background-color: #ffffff; /* White background on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+        }
+
+        .card:hover h3,
+        .card:hover p {
+            color: #000000; /* Black text color on hover */
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            transition: color 0.3s; /* Smooth transition for text color */
+        }
+
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            transition: color 0.3s; /* Smooth transition for text color */
+        }
+
+        /* Button styling */
+        .card-button {
+            display: inline-block;
+            background-color: #ff2e2e; /* Purple background color */
+            color: #ffffff; /* White text color */
+            border: none;
+            padding: 8px 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .card-button:hover {
+            background-color: #000000; /* White background color on hover */
+            color: #ff4646; /* Purple text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1 class="glow-text" data-text="Diploma Courses">Diploma Courses</h1>
+
+    <div class="container">
+        <!-- First row of cards -->
+        <div class="card">
+            <h3>Basic Mathematics</h3>
+            <p>Duration: 2 months 13 Days</p>
+            <p>Price: 2000 Rs</p>
+            <p>Lectured by: Batman</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Physics</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2500 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Chemistry</h3>
+            <p>Duration: 2 months 10 Days</p>
+            <p>Price: 2200 Rs</p>
+            <p>Lectured by: Andrew Tate</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Basics of Electrical and Electronics Engineering</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2700 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <!-- Second row of cards -->
+        <div class="card">
+            <h3>Applied Mathematics</h3>
+            <p>Duration: 2 months</p>
+            <p>Price: 2100 Rs</p>
+            <p>Lectured by: Andrew Tate</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Basic Workshop Practice</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 1200 Rs</p>
+            <p>Lectured by: Batman</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Basic Electronics</h3>
+            <p>Duration: 2 months</p>
+            <p>Price: 2300 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Data Structures and Algorithms</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2200 Rs</p>
+            <p>Lectured by: Andrew Tate</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <!-- Third row of cards -->
+        <div class="card">
+            <h3>Object-Oriented Programming with C++</h3>
+            <p>Duration: 2 months 25 Days</p>
+            <p>Price: 2150 Rs</p>
+            <p>Lectured by: Batman</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Programming in C</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2100 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Database Management Systems</h3>
+            <p>Duration: 2 months 15 Days</p>
+            <p>Price: 2250 Rs</p>
+            <p>Lectured by: Andrew Tate</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Operating Systems</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2650  Rs</p>
+            <p>Lectured by: Batman</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <!-- Fourth row of cards -->
+        <div class="card">
+            <h3>Web Programming (HTML)</h3>
+            <p>Duration: 2 months</p>
+            <p>Price: 2350 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Microprocessor</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2750 Rs</p>
+            <p>Lectured by: Andrew Tate</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Software Engineering</h3>
+            <p>Duration: 2 months 22 Days</p>
+            <p>Price: 2200 Rs</p>
+            <p>Lectured by: Batman</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Java Programming</h3>
+            <p>Duration: 3 months 5 Days</p>
+            <p>Price: 2500 Rs</p>
+            <p>Lectured by: Andrew Tate</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Advanced Java Programming</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2600 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+
+        <div class="card">
+            <h3>Python Programming</h3>
+            <p>Duration: 3 months</p>
+            <p>Price: 2800 Rs</p>
+            <p>Lectured by: Tony Stark</p>
+            <a href="payment.html" class="card-button">Purchase</a>
+        </div>
+    </div>
+    <a href="tutorials.html" class="card-button">Home</a>
+</body>
+</html>

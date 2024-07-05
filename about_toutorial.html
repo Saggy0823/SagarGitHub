@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SP Coding Courses</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Resetting some default styles for better consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        a{
+            border: 10px;
+            border-block: 2;
+            border-color: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://media.giphy.com/media/IxKubPlRZclS8/giphy.gif');
+            background-size: cover;
+            color: #ffffff;
+            line-height: 1.6;
+            padding-top: 60px; /* Adjusted for navbar height */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        
+        
+        
+        .glow-text::before,
+        .glow-text::after {
+            content: attr(data-text); /* Use data-text for content to maintain original text */
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: transparent; /* Transparent text to show glow effect */
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .glow-text::before {
+            animation: glow 2s ease-in-out infinite; /* Animation for background glow */
+            text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF; /* Multiple shadows for glowing effect */
+        }
+        
+        .glow-text::after {
+            animation: glitch 2s ease-in-out infinite; /* Animation for text glitch */
+            text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF; /* Multiple shadows for glowing effect */
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+                background-color: #FFFFFF; /* White background glow */
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.8;
+                background-color: #00BFFF; /* Blue background glow */
+            }
+        }
+        
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+                opacity: 1;
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translate(-5px, 5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translate(5px, -5px);
+            }
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        p:hover {
+            animation: glow-hover 1s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF; /* Multiple shadows for glowing effect */
+        }
+        
+        @keyframes glow-hover {
+            0%, 100% {
+                text-shadow: none;
+            }
+            50% {
+                text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF; /* White glow on hover */
+            }
+        }
+        
+        .about-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-section img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .about-content {
+            flex: 1;
+            margin-right: 40px;
+        }
+        
+        .about-content a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .about-content a:hover {
+            color: #00BFFF;
+        }
+        
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-content {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <section class="about-section">
+        <div class="about-content">
+            <p>About SP Coding Courses<br><br>Welcome to SP Coding Courses, your gateway to a world of programming and technology education. We specialize in providing high-quality coding courses designed to empower learners of all ages and backgrounds. Whether you are a beginner looking to start your journey in programming or a seasoned developer aiming to enhance your skills, SP Coding Courses offers a diverse range of programs tailored to meet your needs.</p>
+            <p>Our mission is to make coding education accessible and enjoyable. We believe in the power of coding to transform lives and drive innovation. With experienced instructors, hands-on projects, and a supportive learning environment, we are committed to helping you succeed in your coding endeavors.</p>
+            <p>Explore our courses and take the first step towards mastering the art of coding with SP Coding Courses.</p>
+            <a href="tutorials.html" class="btn btn-primary">Home</a>
+        </div>
+        <img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif" alt="About Us Image">
+    </section>
+</div>
+
+</body>
+</html>

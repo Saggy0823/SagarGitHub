@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SP Coding Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/87/39/1a/87391a4e7131b62726adf6a779766961.gif');
+            background-size: cover;
+            background-color: #f0f0f0;
+            padding-top: 60px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #000000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-custom .navbar-brand {
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .navbar-custom .navbar-brand img {
+            max-height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            color: #333333;
+            font-weight: bold;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+            position: relative;
+            text-decoration: none;
+            transition: 0.5s;
+            background-color: transparent;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #808080; /* Silver color */
+            background-color: #c0c0c0; /* Light silver background on hover */
+            letter-spacing: 0.25em;
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.8); /* Brighter and larger glowing effect */
+        }
+
+        .navbar-toggler {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-color: #333333;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 100px;
+            overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+        }
+
+        .card {
+            border: none; /* Remove border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+            color: white;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+            width: 240px; /* Width of cards */
+            height: 240px; /* Height of cards */
+            margin: 10px; /* Margin around cards */
+            overflow: hidden; /* Hide any overflowing content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Lift card on hover */
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+        }
+
+        .card .card-img-top {
+            width: 100%; /* Ensure image covers entire card */
+            height: 100%; /* Ensure image covers entire card */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+            border-top-left-radius: 10px; /* Rounded corners */
+            border-top-right-radius: 10px; /* Rounded corners */
+        }
+
+        .card-body {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            padding: 0.75rem; /* Padding for card body */
+            border-bottom-left-radius: 10px; /* Rounded corners */
+            border-bottom-right-radius: 10px; /* Rounded corners */
+            transition: transform 0.2s ease; /* Smooth hover transition */
+            transform: translateY(100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .card:hover .card-body {
+            transform: translateY(0); /* Slide up on hover */
+        }
+
+        .card-title {
+            font-size: 0.875rem; /* Font size for title */
+            font-weight: bold;
+            margin-bottom: 0.25rem; /* Small margin bottom */
+            text-align: center; /* Center align title */
+        }
+
+        .card-text {
+            font-size: 0.75rem; /* Smaller font size */
+            line-height: 1.5; /* Improved line height */
+            text-align: center; /* Center align text */
+        }
+
+        .intro,
+        .facility,
+        .paragraph {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            position: relative;
+            transition: background-color 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .intro:hover,
+        .facility:hover,
+        .paragraph:hover {
+            background-color: #333333; /* Darker background on hover */
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); /* Brighter glowing effect */
+        }
+
+        .intro::before,
+        .facility::before,
+        .paragraph::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #333333; /* Triangle pointer color */
+        }
+
+        .intro::after,
+        .facility::after,
+        .paragraph::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #333333; /* Triangle pointer color */
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="C:\Users\DRAX\Downloads\SP_Tutorial.jpg" alt="SP Coding Courses Logo">
+                SP Coding Courses
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="tutorials.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="diploma_courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about_sptt.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_tutorual.html">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="intro">
+        <h2>Welcome to SP Coding Courses</h2>
+        <p>SP Coding Courses offers affordable and comprehensive education in diploma, HSC/SSC, and computer courses. Whether you're looking to enhance your skills, advance your career, or embark on a new educational journey, we have tailored courses designed to meet your needs.</p>
+    </div>
+
+    <div class="facility">
+        <h2>Why Choose SP Coding Courses?</h2>
+        <p>At SP Coding Courses, we provide:</p>
+        <ul>
+            <li>Comprehensive curriculum crafted by industry experts</li>
+            <li>Affordable pricing to make quality education accessible</li>
+            <li>Flexible learning options to accommodate your schedule</li>
+            <li>Dedicated support from experienced instructors</li>
+            <li>State-of-the-art facilities for enhanced learning experience</li>
+        </ul>
+    </div>
+
+    <div class="paragraph">
+        <h2>Our Facilities</h2>
+        <p>Our facilities ensure an enriched learning experience:</p>
+        <ul>
+            <li>Modern infrastructure with state-of-the-art classrooms and labs</li>
+            <li>Extensive library and e-learning resources for comprehensive study</li>
+            <li>Career services including counseling, job placement assistance, and resume building workshops</li>
+            <li>Vibrant student community for networking and collaboration</li>
+            <li>Recognized certifications upon course completion</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cK/RMzNjt1k4pDn0oM4gZG50EwiW1pTXWTUo7+A/EZv/pGJgmxnK8jvmh2xHpqb+" crossorigin="anonymous"></script>
+</body>
+</html>

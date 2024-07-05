@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car-Info</title>
+    <style>
+        /* Basic styles for demonstration */
+        body {
+            background: url("https://img.freepik.com/free-vector/creative-geometric-design-space_53876-89787.jpg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+        }
+        .navbar a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 17px;
+            padding: 10px;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            border-radius: 5px;
+        }
+        .navbar img {
+            height: 50px;
+            border-radius: 50%; /* Makes the logo circular */
+            margin-right: 10px;
+        }
+        .search-container {
+            flex: 1;
+            text-align: right;
+        }
+        .search-container input[type=text] {
+            padding: 10px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-top: 40px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 300px;
+            margin: 20px;
+            display: inline-block;
+            background-color: #212323;
+            border-radius: 8px;
+            color: #fff;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.646);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            object-fit: cover;
+        }
+        .card-container {
+            text-align: center;
+            padding: 10px 20px;
+        }
+        .card h4 {
+            margin-top: 10px;
+            color: #fff;
+        }
+        .card p {
+            color: #ccc;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="#home"><img src="Default_a_logo_for_CarInfo_featuring_a_stylized_modern_car_sil_3.jpg" alt="Car-Info Logo"> Car-Info</a>
+    <a href="#cars">Cars</a>
+    <a href="#about">About us</a>
+    <a href="#contact">Contact us</a>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterCards()">
+    </div>
+</div>
+
+<h1>Welcome To Car-Info</h1>
+
+<!-- Cards -->
+<div id="cardContainer">
+    <div class="card">
+        <a href="ceinto.html">
+            <img src="https://media.zigcdn.com/media/content/2019/Aug/bugatti-eb110-hommage-zw.jpg" alt="Bugatti Ceintodieci">
+            <div class="card-container">
+                <h4>Bugatti Ceintodieci</h4>
+                <p>Powerful and exclusive hypercar from Bugatti.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="phantom.html">
+            <img src="https://images.hindustantimes.com/auto/img/2022/11/03/1600x900/rolls-royce-phantom-series-II_1667439771956_1667439772150_1667439772150.jpg" alt="Rolls-Royce Phantom">
+            <div class="card-container">
+                <h4>Rolls-Royce Phantom</h4>
+                <p>Ultimate luxury sedan with unparalleled comfort.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="jesko.html">
+            <img src="https://images.carandbike.com/cms/articles/2024/1/3211122/image_1000x600_3_f5238456e7.jpg" alt="Koenigsegg Jesko">
+            <div class="card-container">
+                <h4>Koenigsegg Jesko</h4>
+                <p>High-performance track-focused hypercar.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="Macpa.html">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/McLaren_P1.jpg" alt="McLaren P1">
+            <div class="card-container">
+                <h4>McLaren P1</h4>
+                <p>Hybrid hypercar with stunning design and performance.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="huayra.html">
+            <img src="https://www.motortrend.com/uploads/2021/09/Pagani-Huayra-BC-Roadster-02-1.jpg?w=768&width=768&q=75&format=webp" alt="Pagani Huayra">
+            <div class="card-container">
+                <h4>Pagani Huayra</h4>
+                <p>Exotic Italian hypercar known for its craftsmanship.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="css.html">
+            <img src="https://newsroom.cdn.bugatti-media.com/854d2f52-8953-442f-a54e-1b0e57cf48a1/xl" alt="Bugatti Chiron Super Sport">
+            <div class="card-container">
+                <h4>Bugatti Chiron Super Sport</h4>
+                <p>Extremely fast and luxurious hypercar from Bugatti.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="boat.html">
+            <img src="https://imageio.forbes.com/specials-images/imageserve/628f5ad83764fc375c74921f/Rolls-Royce-Boat-Tail/960x0.jpg?format=jpg&width=960" alt="Rolls-Royce Boattail">
+            <div class="card-container">
+                <h4>Rolls-Royce Boattail</h4>
+                <p>Bespoke and highly customizable luxury car.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="m5.html">
+            <img src="https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/M5/8490/1625142409938/front-left-side-47.jpg" alt="BMW M5">
+            <div class="card-container">
+                <h4>BMW M5</h4>
+                <p>Powerful sports sedan combining performance and luxury.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="sian.html">
+            <img src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/model/sian_rds_refresh_2023/s2.jpg" alt="Lamborghini Sian Roadster">
+            <div class="card-container">
+                <h4>Lamborghini Sian Roadster</h4>
+                <p>Hybrid supercar with striking design and advanced technology.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="lafer.html">
+            <img src="https://s.yimg.com/ny/api/res/1.2/vSziaKEkggzvtqT6v_zhyg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM2MA--/https://media.zenfs.com/en/robb_report_967/33963bdab08f3aa5bb774f25e3a94bb3" alt="La Ferrari">
+            <div class="card-container">
+                <h4>La Ferrari</h4>
+                <p>Legendary hybrid hypercar from Ferrari, combining power and elegance.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="aventa.html">
+            <img src="https://stimg.cardekho.com/images/carexteriorimages/630x420/Lamborghini/Aventador/9170/1676530772968/front-left-side-47.jpg" alt="Lamborghini Aventador">
+            <div class="card-container">
+                <h4>Lamborghini Aventador</h4>
+                <p>One of the powerful machines from Lamborghini.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card">
+        <a href="911.html">
+            <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20221028031929_6.jpg&w=700&c=1" alt="Porsche 911 GT3">
+            <div class="card-container">
+                <h4>Porsche 911 GT3</h4>
+                <p>The beauty of cars with a beast engine.</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script>
+    function filterCards() {
+        // Declare variables
+        let input, filter, cards, cardContainer, title, i;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById('cardContainer');
+        cards = cardContainer.getElementsByClassName('card');
+
+        // Loop through all cards, and hide those who don't match the search query
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector('.card-container h4');
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = '';
+            } else {
+                cards[i].style.display = 'none';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

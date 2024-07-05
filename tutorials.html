@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Coding Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/87/39/1a/87391a4e7131b62726adf6a779766961.gif');
+            background-size: cover;
+            background-color: #f0f0f0;
+            padding-top: 60px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #000000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-custom .navbar-brand {
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .navbar-custom .navbar-brand img {
+            max-height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            color: #333333;
+            font-weight: bold;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+            position: relative;
+            text-decoration: none;
+            transition: color 0.3s, background-color 0.3s;
+            background-color: transparent;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #808080; /* Silver color */
+            background-color: #c0c0c0; /* Light silver background on hover */
+            letter-spacing: 0.25em;
+            box-shadow: 0 0 20px rgba(192, 192, 192, 0.8); /* Brighter and larger glowing effect */
+        }
+
+        .navbar-toggler {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-color: #333333;
+        }
+
+        .glow-text {
+            text-align: center;
+            font-size: 2rem; /* Increased font size */
+            font-weight: bold;
+            margin-bottom: 20px; /* Adjusted margin bottom */
+            color: #00BFFF; /* Blue color for the text */
+            transition: color 0.3s, text-shadow 0.3s, transform 0.3s; /* Transition for color, text-shadow, and transform */
+            position: relative;
+            top: 30px; /* Adjusted position */
+        }
+
+        .glow-text:hover {
+            color: #FFFFFF; /* Change text color on hover */
+            text-shadow: 0 0 10px #00BFFF, 0 0 20px #00BFFF, 0 0 30px #00BFFF; /* Multiple shadows for glowing effect on hover */
+            transform: scale(1.1); /* Scale up on hover */
+        }
+
+        .glow-paragraph {
+            background-color: rgba(98, 98, 120, 0.8); /* Semi-transparent blue background */
+            padding: 20px; /* Padding for the paragraph */
+            border-radius: 10px; /* Rounded corners */
+            text-align: center; /* Center align text */
+            margin-top: 20px; /* Top margin */
+            color: #FFFFFF; /* White text color */
+            transition: background-color 0.3s; /* Transition for background color */
+            box-shadow: 0 0 20px rgba(0, 0, 255, 0.8), 0 0 40px rgba(0, 0, 255, 0.8), 0 0 60px rgba(0, 0, 255, 0.8); /* Larger and brighter glowing effect */
+        }
+
+        .glow-paragraph:hover {
+            background-color: rgba(0, 0, 255, 1); /* Brighter blue background on hover */
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px; /* Adjusted margin-top to accommodate the glowing text */
+            overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+        }
+
+        .card {
+            border: none; /* Remove border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+            color: white;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+            width: 240px; /* Width of cards */
+            height: 240px; /* Height of cards */
+            margin: 10px; /* Margin around cards */
+            overflow: hidden; /* Hide any overflowing content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer; /* Add pointer cursor */
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Lift card on hover */
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+        }
+
+        .card .card-img-top {
+            width: 100%; /* Ensure image covers entire card */
+            height: 100%; /* Ensure image covers entire card */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+            border-top-left-radius: 10px; /* Rounded corners */
+            border-top-right-radius: 10px; /* Rounded corners */
+        }
+
+        .card-body {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            padding: 0.75rem; /* Padding for card body */
+            border-bottom-left-radius: 10px; /* Rounded corners */
+            border-bottom-right-radius: 10px; /* Rounded corners */
+            transition: transform 0.2s ease; /* Smooth hover transition */
+            transform: translateY(100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .card:hover .card-body {
+            transform: translateY(0); /* Slide up on hover */
+        }
+
+        .card-title {
+            font-size: 0.875rem; /* Font size for title */
+            font-weight: bold;
+            margin-bottom: 0.25rem; /* Small margin bottom */
+            text-align: center; /* Center align title */
+        }
+
+        .card-text {
+            font-size: 0.75rem; /* Smaller font size */
+            line-height: 1.5; /* Improved line height */
+            text-align: center; /* Center align text */
+        }
+
+        .col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row-cols-md-2 {
+            justify-content: center; /* Center cards horizontally */
+            max-width: 900px; /* Limit maximum width of cards */
+            margin: auto; /* Center align row */
+        }
+
+        .recent-searches {
+            display: none; /* Initially hide recent searches */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #ffffff; /* White background */
+            border: 1px solid #ddd; /* Gray border */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Shadow */
+        }
+
+        .recent-searches ul {
+            list-style-type: none; /* Remove list style */
+            padding: 0;
+            margin: 0;
+        }
+
+        .recent-searches ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Gray border bottom */
+            transition: background-color 0.3s; /* Transition for background color */
+        }
+
+        .recent-searches ul li:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        .recent-searches ul li a {
+            text-decoration: none; /* Remove underline */
+            color: #333333; /* Dark color */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="C:\Users\DRAX\Downloads\SP_Tutorial.jpgC:\Users\DRAX\Downloads\SP_Tutorial.jpg">
+            <img src="C:\Users\DRAX\Downloads\SP_Tutorial.jpg" alt="Logo" loading="lazy">
+            SP Coding Tutorials
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="tutorials.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Frontpage.html">CODE-NOTE-PEDIA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about_toutorial.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact_tutorual.html">Contact Us</a>
+                </li>
+                
+            </ul>
+            <form id="searchForm" class="d-flex position-relative">
+                <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <div id="recentSearchDropdown" class="recent-searches"></div>
+                <button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="glow-text">Welcome to SP Coding Tutorials</h1>
+    <div class="card-container">
+        <a href="about_sptt.html" class="card position-relative">
+            <img src="https://media.giphy.com/media/oX8uGU2kR9wxXBlZlk/giphy.gif" class="card-img-top" alt="About Us Image">
+            <div class="card-body">
+                <h5 class="card-title">Welcome To SP CODING COURSES</h5>
+                <p class="card-text">Here Is About Us.</p>
+            </div>
+        </a>
+        <a href="hsc_ssc_courses.html" class="card position-relative">
+            <img src="https://cdn.zmescience.com/wp-content/uploads/2015/01/giphy.gif" class="card-img-top" alt="Placeholder Image">
+            <div class="card-body">
+                <h5 class="card-title">HSC / SSC Courses</h5>
+                <p class="card-text">Begin your academic journey with our specialized HSC/SSC subject courses tailored for success.</p>
+            </div>
+        </a>
+        <a href="computer_courses.html" class="card position-relative">
+            <img src="https://giffiles.alphacoders.com/363/36302.gif" class="card-img-top" alt="Placeholder Image">
+            <div class="card-body">
+                <h5 class="card-title">Computer Courses</h5>
+                <p class="card-text">Dive into the foundational and advanced realms of computer science with practical and theoretical courses.</p>
+            </div>
+        </a>
+        <a href="diploma_courses.html" class="card position-relative">
+            <img src="C:\Users\DRAX\Downloads\36284.gif" class="card-img-top" alt="Placeholder Image">
+            <div class="card-body">
+                <h5 class="card-title">Diploma Courses</h5>
+                <p class="card-text">Embark on a dynamic journey into the world of coding with our comprehensive diploma courses.</p>
+            </div>
+        </a>
+    </div>
+    <div class="glow-paragraph">
+        <p>SP Coding Courses offers a wide range of programs dedicated to coding, computer science, and HSC/SSC courses. Whether you're a beginner or looking to advance your skills, our courses are designed to empower you with practical knowledge and expertise.</p>
+        <p>Explore our diverse range of programs and start your journey towards mastering the world of technology and academia. Join us and unlock your potential with SP Coding Courses.</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const recentSearchDropdown = document.getElementById('recentSearchDropdown');
+
+        const recentSearches = [
+            'Diploma Courses',
+            'HSC / SSC Courses',
+            'Computer Courses'
+        ];
+
+        // Function to show recent searches in dropdown
+        const showRecentSearches = () => {
+            recentSearchDropdown.innerHTML = ''; // Clear previous dropdown items
+
+            if (searchInput.value.trim().length > 0) { // Show recent searches only if input is not empty
+                recentSearches.forEach(search => {
+                    const li = document.createElement('li');
+                    li.classList.add('dropdown-item');
+                    li.textContent = search;
+                    li.addEventListener('click', () => {
+                        searchInput.value = search; // Set input value to clicked recent search
+                        recentSearchDropdown.innerHTML = ''; // Clear dropdown after selection
+                    });
+                    recentSearchDropdown.appendChild(li);
+                });
+
+                recentSearchDropdown.style.display = 'block'; // Display the dropdown
+            } else {
+                recentSearchDropdown.style.display = 'none'; // Hide dropdown if input is empty
+            }
+        };
+
+        // Event listener for input change
+        searchInput.addEventListener('input', showRecentSearches);
+
+        // Event listener for form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const searchValue = searchInput.value.toLowerCase().trim();
+
+            if (searchValue.includes('diploma courses') || searchValue.includes('diploma')) {
+                window.location.href = 'diploma_courses.html';
+            } else if (searchValue.includes('hsc / ssc courses') || searchValue.includes('hsc') || searchValue.includes('ssc')) {
+                window.location.href = 'hsc_ssc_courses.html';
+            } else if (searchValue.includes('computer courses') || searchValue.includes('computer')) {
+                window.location.href = 'computer_courses.html';
+            } else {
+                alert('No matching course found.'); // Optional: Show an alert for unmatched searches
+            }
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('#recentSearchDropdown') && !event.target.closest('#searchInput')) {
+                recentSearchDropdown.innerHTML = '';
+            }
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cK/RMzNjt1k4pDn0oM4gZG50EwiW1pTXWTUo7+A/EZv/pGJgmxnK8jvmh2xHpqb+" crossorigin="anonymous"></script>
+</body>
+</html>

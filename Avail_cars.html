@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Cars</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .filter {
+            margin-bottom: 20px;
+        }
+        .car {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-gap: 10px;
+        }
+        .car img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 8px;
+        }
+        .car-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .car-details h2 {
+            margin: 0;
+        }
+        .car-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Cars</h1>
+
+        <div class="filter">
+            <label for="name-filter">Filter by Name:</label>
+            <input type="text" id="name-filter" placeholder="Enter car name...">
+        </div>
+
+        <div class="filter">
+            <label for="brand-filter">Filter by Brand:</label>
+            <select id="brand-filter">
+                <option value="">All Brands</option>
+                <option value="Koenigsegg">Koenigsegg</option>
+                <option value="Hennessey">Hennessey</option>
+                <option value="SSC">SSC</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="BMW">BMW</option>
+                <option value="Pagani">Pagani</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Rolls-Royce">Rolls-Royce</option>
+                <!-- Add more brands as needed -->
+            </select>
+        </div>
+
+        <div class="filter">
+            <label for="price-filter">Filter by Price:</label>
+            <input type="range" id="price-filter" min="0" max="3000000" value="1500000">
+            <span id="price-value">$1,500,000</span>
+        </div>
+
+        <div id="car-list">
+            <!-- Cars will be dynamically added here -->
+        </div>
+
+    </div>
+
+    <script>
+        // Sample data of available cars
+        const availableCars = [
+            { brand: "Koenigsegg", name: "One:1", topSpeed: "273 mph", price: 2000000, image: "https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/14q4/638369/2015-koenigsegg-one1-first-drive-review-car-and-driver-photo-654233-s-original.jpg" },
+            { brand: "Hennessey", name: "Venom GT", topSpeed: "270 mph", price: 1200000, image: "https://digitaldealer.com/wp-content/uploads/2014/02/Hennessey-Venom-GT-Spyder.jpg" },
+            { brand: "SSC", name: "Ultimate Aero", topSpeed: "270 mph", price: 1500000, image: "https://www.supercars.net/blog/wp-content/uploads/2016/04/2009_SSC_UltimateAero1.jpg" },
+            { brand: "Vector", name: "Avtech WX-8 HPV", topSpeed: "270 mph", price: 1300000, image: "https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/07q4/267451/2018-mazda-3-concept-photo-94155-s-original.jpg" },
+            { brand: "Oldsmobile", name: "Aerotech ST", topSpeed: "267.71 mph", price: 800000, image: "https://www.supercars.net/blog/wp-content/uploads/2015/12/1987_Oldsmobile_AerotechST1-scaled.jpg" },
+            { brand: "Bugatti", name: "Veyron Super Sport", topSpeed: "267.70 mph", price: 2500000, image: "https://www.bugatti.com/media/e0bhuxb0/slider-01.jpeg?width=1920&height=900&rnd=133343651482200000" },
+            { brand: "Keating", name: "TKR", topSpeed: "260 mph", price: 900000, image: "https://www.supercars.net/blog/wp-content/uploads/2016/01/2keatingf34.jpg" },
+            { brand: "SSC", name: "Ultimate Aero TT", topSpeed: "257.44 mph", price: 1400000, image: "https://www.topcarrating.com/ssc/2006-ssc-ultimate-aero-tt-1.jpg" },
+            { brand: "Nissan", name: "GT9-R", topSpeed: "257.09 mph", price: 1100000, image: "https://www.ultimatecarpage.com/images/car/3923/9ff-GT9-R-31365.jpg" },
+            { brand: "Hennessey", name: "SRT-10 Viper Venom", topSpeed: "255 mph", price: 950000, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuPUKsy8W-syrzSDsbclOrqWFhpZ8MzGGe0w&s" },
+            { brand: "Nissan", name: "GT9", topSpeed: "255 mph", price: 900000, image: "https://www.motortrend.com/uploads/sites/5/2010/06/33738687.jpeg.jpg?w=768&width=768&q=75&format=webp" },
+            { brand: "Callaway", name: "Sledgehammer Corvette", topSpeed: "254.7 mph", price: 850000, image: "https://hips.hearstapps.com/hmg-prod/images/c3-1620824927.jpeg?crop=1xw:0.843956043956044xh;center,top&resize=1200:*" },
+            { brand: "Koenigsegg", name: "CCXR Trevita", topSpeed: "254.61 mph", price: 2200000, image: "https://mainwebstorage.blob.core.windows.net/mediacontainers/styles/1920x1400/azure/2022-03/DSC00079.jpg?h=b3a74989&itok=D2tXUqkz" },
+            { brand: "Bugatti", name: "Veyron Grand Sport Vitesse", topSpeed: "253.89 mph", price: 2300000, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoyFpf72lt_-utP3naRQDLawEEbai_uMhF_g&s" },
+            { brand: "Mansory", name: "Vivere", topSpeed: "253 mph", price: 2400000, image: "https://www.mansory.com/sites/default/files/styles/1920x800_fullwidth_car_slider/public/migrated/cars/Cars/bugatti/linea_vivere/mansory_bugatti_veyron_vivere_01.jpg?itok=jqWtOEHT" },
+            { brand: "Bugatti", name: "Veyron 'L'Or Blanc'", topSpeed: "253 mph", price: 2500000, image: "https://newsroom.cdn.bugatti-media.com/901ac3b7-e035-4c9b-be73-b76fb079bc25/original" },
+            { brand: "Ford", name: "GT90 Concept", topSpeed: "253 mph", price: 3000000, image: "images/ford-gt90-concept.jpg" },
+            { brand: "Bugatti", name: "Veyron", topSpeed: "253 mph", price: 2500000, image: "images/bugatti-veyron.jpg" },
+            { brand: "Bugatti", name: "Veyron Pur Sang", topSpeed: "253 mph", price: 2500000, image: "images/bugatti-veyron-pur-sang.jpg" },
+            { brand: "Bugatti", name: "Veyron Fbg par Hermès", topSpeed: "253 mph", price: 2500000, image: "images/bugatti-veyron-fbg-par-hermes.jpg" },
+            { brand: "Bugatti", name: "Veyron Grand Sport", topSpeed: "253 mph", price: 2600000, image: "images/bugatti-veyron-grand-sport.jpg" },
+            { brand: "Bugatti", name: "Veyron 'Wei Long 2012'", topSpeed: "253 mph", price: 2700000, image: "images/bugatti-veyron-wei-long-2012.jpg" },
+            { brand: "Bugatti", name: "Veyron Venet", topSpeed: "253 mph", price: 2600000, image: "images/bugatti-veyron-venet.jpg" },
+            { brand: "Bugatti", name: "Veyron Sang Noir", topSpeed: "252.75 mph", price: 2500000, image: "images/bugatti-veyron-sang-noir.jpg" },
+            { brand: "Dauer", name: "962 Le Mans", topSpeed: "251.4 mph", price: 800000, image: "images/dauer-962-le-mans.jpg" },
+            { brand: "Bugatti", name: "Veyron Concept", topSpeed: "250.4 mph", price: 1000000, image: "images/bugatti-veyron-concept.jpg" },
+            { brand: "Koenigsegg", name: "CCXR Edition", topSpeed: "250 mph", price: 2000000, image: "images/koenigsegg-ccxr-edition.jpg" },
+            { brand: "Vector", name: "WX3 Concept", topSpeed: "250.0 mph", price: 1500000, image: "images/vector-wx3-concept.jpg" },
+            { brand: "Weber", name: "Sportscar", topSpeed: "249 mph", price: 1100000, image: "images/weber-sportscar.jpg" },
+            { brand: "SSC", name: "Aero SC/8T Prototype", topSpeed: "249 mph", price: 1200000, image: "images/ssc-aero-sc8t-prototype.jpg" },
+            { brand: "Lotec", name: "Sirius", topSpeed: "248.5 mph", price: 1300000, image: "images/lotec-sirius.jpg" },
+            { brand: "Chrysler", name: "ME Four-Twelve Concept", topSpeed: "248.5 mph", price: 1400000, image: "images/chrysler-me-four-twelve-concept.jpg" },
+            { brand: "Jurgen", name: "Alzen Motorsport Mission", topSpeed: "248.5 mph", price: 1500000, image: "images/jurgen-alzen-motorsport-mission.jpg" },
+            { brand: "Auto Union", name: "Typ C Stromlinie", topSpeed: "248.40 mph", price: 1600000, image: "images/auto-union-typ-c-stromlinie.jpg" },
+            { brand: "Koenigsegg", name: "CCXR", topSpeed: "248.40 mph", price: 1700000, image: "images/koenigsegg-ccxr.jpg" },
+            { brand: "Saleen", name: "S7 Twin Turbo", topSpeed: "248 mph", price: 1800000, image: "images/saleen-s7-twin-turbo.jpg" },
+            { brand: "Saleen", name: "S7 Twin Turbo Competition", topSpeed: "248 mph", price: 1900000, image: "images/saleen-s7-twin-turbo-competition.jpg" },
+            { brand: "Mercedes", name: "Sauber-Mercedes C9", topSpeed: "247.16 mph", price: 2000000, image: "images/mercedes-sauber-mercedes-c9.jpg" },
+            { brand: "Jaguar", name: "XJR-9LM", topSpeed: "245 mph", price: 2100000, image: "images/jaguar-xjr-9lm.jpg" },
+            { brand: "Koenigsegg", name: "CCX", topSpeed: "245 mph", price: 2200000, image: "images/koenigsegg-ccx.jpg" },
+            { brand: "Koenigsegg", name: "Agera", topSpeed: "245 mph", price: 2300000, image: "images/koenigsegg-agera.jpg" },
+            { brand: "9ff", name: "TR1000", topSpeed: "243.25 mph", price: 2400000, image: "images/9ff-tr1000.jpg" },
+            { brand: "Koenigsegg", name: "CCR", topSpeed: "241.1 mph", price: 2500000, image: "images/koenigsegg-ccr.jpg" },
+            { brand: "McLaren", name: "F1", topSpeed: "240.1 mph", price: 2600000, image: "images/mclaren-f1.jpg" },
+            { brand: "Koenigsegg", name: "CC 8S", topSpeed: "240 mph", price: 2700000, image: "images/koenigsegg-cc-8s.jpg" },
+            { brand: "TVR", name: "Cerbera Speed 12", topSpeed: "240 mph", price: 2800000, image: "images/tvr-cerbera-speed-12.jpg" },
+            { brand: "BMW", name: "M5", topSpeed: "200 mph", price: 800000, image: "images/bmw-m5.jpg" },
+            { brand: "BMW", name: "M4", topSpeed: "200 mph", price: 800000, image: "images/bmw-m5.jpg" },
+            { brand: "BMW", name: "I8", topSpeed: "200 mph", price: 800000, image: "images/bmw-m5.jpg" },
+            { brand: "Pagani", name: "Huayra", topSpeed: "240 mph", price: 2800000, image: "images/pagani-huayra.jpg" },
+            { brand: "Hennessey", name: "Venom F5", topSpeed: "301 mph", price: 1600000, image: "images/hennessey-venom-f5.jpg" },
+            { brand: "SSC", name: "Tuatara", topSpeed: "300 mph", price: 1700000, image: "images/ssc-tuatara.jpg" },
+            { brand: "Hennessey", name: "Venom GT", topSpeed: "290 mph", price: 1550000, image: "images/hennessey-venom-gt2.jpg" },
+            { brand: "Koenigsegg", name: "Jesko Absolut", topSpeed: "330 mph", price: 2000000, image: "images/koenigsegg-jesko-absolut.jpg" }
+        ];
+
+        const carList = document.getElementById('car-list');
+
+        // Function to display cars based on filters
+        function displayCars() {
+            const nameFilter = document.getElementById('name-filter').value.toLowerCase();
+            const brandFilter = document.getElementById('brand-filter').value.toLowerCase(); // Convert to lower case for case insensitive comparison
+            const maxPrice = document.getElementById('price-filter').value;
+
+            // Clear previous car list
+            carList.innerHTML = '';
+
+            availableCars.forEach(car => {
+                if ((car.name.toLowerCase().includes(nameFilter) || nameFilter === '') &&
+                    (car.brand.toLowerCase().includes(brandFilter) || brandFilter === '') && // Case insensitive comparison
+                    car.price <= maxPrice) {
+                    const carElement = document.createElement('div');
+                    carElement.classList.add('car');
+                    carElement.innerHTML = `
+                        <img src="${car.image}" alt="${car.name}">
+                        <div class="car-details">
+                            <h2>${car.brand} ${car.name}</h2>
+                            <p><strong>Top Speed:</strong> ${car.topSpeed}</p>
+                            <p><strong>Price:</strong> $${car.price.toLocaleString()}</p>
+                        </div>
+                    `;
+                    carList.appendChild(carElement);
+                }
+            });
+        }
+
+        // Initial display of cars
+        displayCars();
+
+        // Event listeners for filters
+        document.getElementById('name-filter').addEventListener('input', displayCars);
+        document.getElementById('brand-filter').addEventListener('change', displayCars);
+        document.getElementById('price-filter').addEventListener('input', function() {
+            document.getElementById('price-value').textContent = '$' + this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            displayCars();
+        });
+    </script>
+</body>
+</html>

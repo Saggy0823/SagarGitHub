@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentic Navbar Design</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background: url('https://i.gifer.com/origin/e3/e3110366e800f79d83bd9e8155e87b80.gif') fixed center;
+            background-size: cover;
+            padding-top: 60px;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            gap: 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #2c3e50;
+            border-bottom: 4px solid #bdc3c7;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-custom .navbar-brand {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .navbar-custom .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 20px; /* Adjusted padding for uniform size */
+            margin: 0 5px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 1em; 
+            letter-spacing: 0.1em;
+            position: relative;
+            text-decoration: none;
+            transition: 0.5s;
+            background-color: transparent;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #27282c;
+            background-color: lightblue;
+            letter-spacing: 0.25em;
+            box-shadow: 0 0 35px #ffffff;
+        }
+
+        .navbar-custom .dropdown-menu {
+            background-color: #2c3e50;
+        }
+
+        .navbar-custom .dropdown-menu .dropdown-item {
+            color: #ffffff;
+        }
+
+        .navbar-custom .dropdown-menu .dropdown-item:hover {
+            background-color: #34495e;
+        }
+
+        .card-custom {
+            background-color: #34495e;
+            color: #ffffff;
+            border-radius: 8px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-custom .card-img-top {
+            flex: 1;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-custom .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-custom .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-custom .card-text {
+            flex-grow: 1;
+        }
+
+        .card-custom .btn-primary {
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+            <a id="navbarLogo" class="navbar-brand" href="C:\Users\DRAX\Downloads\CODE-NOTE-PEDIA.jpg">
+                <img src="C:\Users\DRAX\Downloads\CODE-NOTE-PEDIA.jpg" alt="CODE-NOTE-PEDIA.jpg">
+                CODE-NOTE-PEDIA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Homepage.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Links.html"> Social Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Homepage.html">Language Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tutorials.html">SP Coding Courses</a>
+                    </li>
+                </ul>
+                <form id="searchForm" class="d-flex">
+                    <input class="form-control me-2" list="searchOptions" type="search" id="searchInput" placeholder="Search" aria-label="Search">
+                    <datalist id="searchOptions">
+                        <option value="C">
+                        <option value="C++">
+                        <option value="Java">
+                        <option value="Python">
+                        <option value="C#">
+                        <option value="JavaScript">
+                        <option value="PHP">
+                        <option value="HTML">
+                    </datalist>
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col mb-4">
+                <div class="card card-custom">
+                    <img src="https://media1.tenor.com/images/316e01519fea9e0610ce72f825894c53/tenor.gif?itemid=9921841" class="card-img-top" alt="Welcome Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome</h5>
+                        <p class="card-text">
+                            Welcome to CODE-NOTE-PEDIA, your ultimate resource for programming languages.
+                        </p>
+                        <a href="ABOUT_SITE.HTML" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card card-custom">
+                    <img src="https://c.tenor.com/xtFf2a8D2uMAAAAd/writing-notepad.gif" class="card-img-top" alt="Notes Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Notes</h5>
+                        <p class="card-text">
+                            Explore various programming notes and tips to enhance your skills and help you to understand topics.
+                        </p>
+                        <a href="Homepage.html" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card card-custom">
+                    <img src="https://cdn.dribbble.com/users/2065768/screenshots/4438259/whatwedo---dribbble.gif" class="card-img-top" alt="About Us Image">
+                    <div class="card-body">
+                        <h5 class="card-title">About Us</h5>
+                        <p class="card-text">
+                            Learn more about our mission and vision at CODE-NOTE-PEDIA.
+                        </p>
+                        <a href="About_us.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card card-custom">
+                    <img src="https://gotortalent.com/static/img/contact-us-min.gif" class="card-img-top" alt="Contact Us Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Contact Us</h5>
+                        <p class="card-text">
+                            Contact us for any inquiries or collaborations or have any issues with us just contact without hesitation.
+                        </p>
+                        <a href="contact_us.html" class="btn btn-primary">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            
+            let searchTerm = document.getElementById('searchInput').value;
+            alert('Performing search for: ' + searchTerm);
+            
+            // Perform your actual search logic based on searchTerm here
+            // Example: redirect to a search results page or perform an AJAX request
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cK/RMzNjt1k4pDn0oM4gZG50EwiW1pTXWTUo7+A/EZv/pGJgmxnK8jvmh2xHpqb+" crossorigin="anonymous"></script>
+</body>
+</html>

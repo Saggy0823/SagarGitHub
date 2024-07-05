@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Trainer Game</title>
+    <style>
+        body {
+            background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/154beb65838927.5b0279a21ff61.gif');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #game-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, p {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Pokémon Trainer Game</h1>
+        <div id="output">
+            <p>Welcome Trainer!</p>
+            <p>Current city: <span id="current-city">Home Town</span></p>
+            <p id="player-info"></p>
+        </div>
+        <div id="actions">
+            <button onclick="travel()">Travel to a new city</button>
+            <button onclick="capturePokemon()">Capture Pokémon</button>
+            <button onclick="gymBattle()">Gym Battle</button>
+            <button onclick="checkPokedex()">Check Pokédex</button>
+        </div>
+    </div>
+
+    <script>
+        // Pokémon Class
+        class Pokemon {
+            constructor(name, type, hp, attack) {
+                this.name = name;
+                this.type = type;
+                this.hp = hp;
+                this.attack = attack;
+                this.max_hp = hp;
+            }
+
+            takeDamage(damage) {
+                this.hp -= damage;
+                if (this.hp < 0) {
+                    this.hp = 0;
+                }
+            }
+
+            heal(amount) {
+                this.hp += amount;
+                if (this.hp > this.max_hp) {
+                    this.hp = this.max_hp;
+                }
+            }
+
+            isAlive() {
+                return this.hp > 0;
+            }
+
+            attackEnemy(enemy) {
+                let damage = Math.floor(Math.random() * (this.attack - Math.floor(this.attack / 2) + 1)) + Math.floor(this.attack / 2);
+                enemy.takeDamage(damage);
+                return damage;
+            }
+
+            toString() {
+                return `${this.name} (${this.type}) - HP: ${this.hp}/${this.max_hp}, Attack: ${this.attack}`;
+            }
+        }
+
+        // Trainer Class
+        class Trainer {
+            constructor(name) {
+                this.name = name;
+                this.pokemon = null;
+                this.pokedex = [];
+                this.currentCity = "Home Town";
+                this.citiesVisited = new Set(["Home Town"]);
+            }
+
+            travel() {
+                let cities = ["City 1", "City 2", "City 3", "City 4", "City 5", "City 6", "City 7", "City 8", "City 9", "City 10",
+                              "City 11", "City 12", "City 13", "City 14", "City 15"];
+                let newCity = cities[Math.floor(Math.random() * cities.length)];
+                this.currentCity = newCity;
+                this.citiesVisited.add(newCity);
+                this.updateOutput(`You traveled to ${newCity}`);
+                this.updatePlayerInfo();
+            }
+
+            capturePokemon() {
+                if (!this.pokemon) {
+                    let pokemonNames = Object.keys(pokemonData);
+                    let pokemonName = pokemonNames[Math.floor(Math.random() * pokemonNames.length)];
+                    this.pokemon = new Pokemon(pokemonName, pokemonData[pokemonName].type, pokemonData[pokemonName].hp, pokemonData[pokemonName].attack);
+                    this.updateOutput(`A wild ${pokemonName} appeared! You captured your first Pokémon: ${this.pokemon.name}`);
+                } else {
+                    let pokemonNames = Object.keys(pokemonData);
+                    let pokemonName = pokemonNames[Math.floor(Math.random() * pokemonNames.length)];
+                    let wildPokemon = new Pokemon(pokemonName, pokemonData[pokemonName].type, pokemonData[pokemonName].hp, pokemonData[pokemonName].attack);
+                    
+                    this.updateOutput(`A wild ${pokemonName} appeared! Your current Pokémon: ${this.pokemon.name}`);
+                    
+                    while (wildPokemon.isAlive()) {
+                        this.updateOutput(`${this.pokemon.name} - HP: ${this.pokemon.hp}/${this.pokemon.max_hp}`);
+                        this.updateOutput(`${wildPokemon.name} - HP: ${wildPokemon.hp}/${wildPokemon.max_hp}`);
+
+                        let action = prompt("What will you do? (1. Attack, 2. Capture)");
+
+                        if (action === '1') {
+                            let damageDealt = this.pokemon.attackEnemy(wildPokemon);
+                            this.updateOutput(`${this.pokemon.name} attacks ${wildPokemon.name} and deals ${damageDealt} damage.`);
+                            if (wildPokemon.isAlive()) {
+                                let damageReceived = wildPokemon.attackEnemy(this.pokemon);
+                                this.updateOutput(`${wildPokemon.name} attacks ${this.pokemon.name} and deals ${damageReceived} damage.`);
+                            }
+                        } else if (action === '2') {
+                            let captureChance = Math.random();
+                            if (captureChance > 0.5) {
+                                this.pokedex.push(wildPokemon.name);
+                                this.updateOutput(`You captured ${wildPokemon.name}!`);
+                                break;
+                            } else {
+                                this.updateOutput(`Capture failed! ${wildPokemon.name} escaped.`);
+                                wildPokemon.attackEnemy(this.pokemon);
+                            }
+                        } else {
+                            this.updateOutput("Invalid choice. Choose 1 or 2.");
+                        }
+                    }
+
+                    if (!this.pokemon.isAlive()) {
+                        this.updateOutput(`${this.pokemon.name} fainted! You need to heal it.`);
+                        this.pokemon.heal(50);
+                    }
+                }
+
+                this.updatePlayerInfo();
+            }
+
+            gymBattle() {
+                let gyms = ["Gym 1", "Gym 2", "Gym 3", "Gym 4", "Gym 5", "Gym 6", "Gym 7", "Gym 8", "Gym 9", "Gym 10"];
+                let gymName = gyms[Math.floor(Math.random() * gyms.length)];
+                this.updateOutput(`Challenging ${gymName}!`);
+
+                let gymPokemonData = [
+                    {name: "Brock's Onix", type: "Rock", hp: 80, attack: 30},
+                    {name: "Misty's Starmie", type: "Water", hp: 70, attack: 35},
+                    {name: "Lt. Surge's Raichu", type: "Electric", hp: 75, attack: 35},
+                    {name: "Erika's Vileplume", type: "Grass", hp: 70, attack: 30},
+                    {name: "Koga's Weezing", type: "Poison", hp: 75, attack: 35},
+                    {name: "Sabrina's Alakazam", type: "Psychic", hp: 80, attack: 40},
+                    {name: "Blaine's Arcanine", type: "Fire", hp: 85, attack: 40},
+                    {name: "Giovanni's Rhydon", type: "Ground", hp: 90, attack: 40},
+                    {name: "Lorelei's Lapras", type: "Ice", hp: 85, attack: 35},
+                    {name: "Agatha's Gengar", type: "Ghost", hp: 80, attack: 35}
+                    // Add more gym Pokémon as needed
+                ];
+
+                let gymPokemonTeam = gymPokemonData.map(pokemonInfo => new Pokemon(pokemonInfo.name, pokemonInfo.type, pokemonInfo.hp, pokemonInfo.attack));
+
+                for (let i = 0; i < gymPokemonTeam.length; i++) {
+                    let gymPokemon = gymPokemonTeam[i];
+
+                    this.updateOutput(`You: ${this.pokemon}`);
+                    this.updateOutput(`${gymName} Pokémon: ${gymPokemon}`);
+
+                    while (this.pokemon.isAlive() && gymPokemon.isAlive()) {
+                        this.updateOutput(`You: ${this.pokemon.name} - HP: ${this.pokemon.hp}/${this.pokemon.max_hp}`);
+                        this.updateOutput(`${gymPokemon.name} - HP: ${gymPokemon.hp}/${gymPokemon.max_hp}`);
+
+                        let damageDealt = this.pokemon.attackEnemy(gymPokemon);
+                        this.updateOutput(`${this.pokemon.name} attacks ${gymPokemon.name} and deals ${damageDealt} damage.`);
+
+                        if (gymPokemon.isAlive()) {
+                            let damageReceived = gymPokemon.attackEnemy(this.pokemon);
+                            this.updateOutput(`${gymPokemon.name} attacks ${this.pokemon.name} and deals ${damageReceived} damage.`);
+                        }
+                    }
+
+                    if (!this.pokemon.isAlive()) {
+                        this.updateOutput(`${this.pokemon.name} fainted! You blacked out and returned to ${this.currentCity}.`);
+                        this.pokemon.heal(50);
+                        break;
+                    }
+                }
+
+                this.updatePlayerInfo();
+            }
+
+            checkPokedex() {
+                this.updateOutput(`Pokédex: ${this.pokedex.join(', ') || 'Empty'}`);
+            }
+
+            updateOutput(message) {
+                let outputDiv = document.getElementById('output');
+                let p = document.createElement('p');
+                p.textContent = message;
+                outputDiv.appendChild(p);
+                outputDiv.scrollTop = outputDiv.scrollHeight;
+            }
+
+            updatePlayerInfo() {
+                let playerInfo = document.getElementById('player-info');
+                playerInfo.textContent = `Current city: ${this.currentCity} | Pokémon: ${this.pokemon ? this.pokemon.name : 'None'} | Pokédex count: ${this.pokedex.length}`;
+            }
+        }
+
+        // Sample Pokémon Data
+        let pokemonData = {
+            "Pikachu": {type: "Electric", hp: 60, attack: 20},
+            "Bulbasaur": {type: "Grass", hp: 50, attack: 15},
+            "Charmander": {type: "Fire", hp: 55, attack: 18},
+            "Squirtle": {type: "Water", hp: 55, attack: 18},
+            // Add more Pokémon data as needed
+        };
+
+        // Initialize Trainer
+        let trainer = new Trainer("Ash");
+
+        // Initial Output
+        trainer.updateOutput(`Welcome Trainer ${trainer.name}! You started your journey in ${trainer.currentCity}`);
+
+        // Button Event Handlers
+        function travel() {
+            trainer.travel();
+        }
+
+        function capturePokemon() {
+            trainer.capturePokemon();
+        }
+
+        function gymBattle() {
+            trainer.gymBattle();
+        }
+
+        function checkPokedex() {
+            trainer.checkPokedex();
+        }
+    </script>
+</body>
+</html>

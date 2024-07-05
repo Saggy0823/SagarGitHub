@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Game Selection</title>
+    <style>
+        body {
+            background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/154beb65838927.5b0279a21ff61.gif');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            width: calc(25% - 20px); /* 4 games per row, gap is 20px */
+            margin: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            color: #ff8c00; /* Orange color for headings */
+            margin-bottom: 10px;
+        }
+        .card p {
+            margin-bottom: 20px;
+        }
+        .btn-play {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .btn-play:hover {
+            background-color: #e67300; /* Darker orange on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="card">
+            <h2>Guess the Number</h2>
+            <p>A classic number guessing game.</p>
+            <a href="Guess Number.html" class="btn-play" onclick="playGame('Guess the Number')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Hangman</h2>
+            <p>A word guessing game.</p>
+            <a href="Hungman.html" class="btn-play" onclick="playGame('Hangman')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Tic Tac Toe</h2>
+            <p>A strategic board game.</p>
+            <a href="Tic-Tac-Toe.html" class="btn-play" onclick="playGame('Tic Tac Toe')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Car Dash</h2>
+            <p>A racing game with cars.</p>
+            <a href="carDash.html" class="btn-play" onclick="playGame('Car Dash')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Cards</h2>
+            <p>A card game with various rules.</p>
+            <a href="Cards.html" class="btn-play" onclick="playGame('Cards')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Dragon Drax</h2>
+            <p>An adventure RPG with dragons.</p>
+            <a href="DragonDrax.html" class="btn-play" onclick="playGame('Dragon Drax')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Ghost Mansion</h2>
+            <p>A spooky adventure in a haunted mansion.</p>
+            <a href="GhostMension.html" class="btn-play" onclick="playGame('Ghost Mansion')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Kingdom Simulator</h2>
+            <p>Build and manage your own kingdom.</p>
+            <a href="Kingdom.html" class="btn-play" onclick="playGame('Kingdom Simulator')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Poke-Metra</h2>
+            <p>A Pokémon-themed adventure game.</p>
+            <a href="Poke-Metra.html" class="btn-play" onclick="playGame('Poke-Metra')">Play</a>
+        </div>
+        <div class="card">
+            <h2>Bike Showroom Handler</h2>
+            <p>A Bike Showrrom and management game.</p>
+            <a href="BikeShowroom.html" class="btn-play" onclick="playGame('Poke-Metra')">Play</a>
+        </div>
+    </div>
+
+    <script>
+        function playGame(gameName) {
+            alert(`You are playing ${gameName}`);
+            // Replace alert with actual game launch functionality
+        }
+    </script>
+</body>
+</html>
